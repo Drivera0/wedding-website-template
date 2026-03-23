@@ -1,0 +1,85 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  overflow-x: hidden;
+  text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+body {
+  font-family: "Jost", -apple-system, sans-serif;
+  font-weight: 300;
+  background: #F7F4EC;
+  color: #1F2F3B;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(31,47,59,0.12); border-radius: 3px; }
+
+/* Selection */
+::selection {
+  background: rgba(46,125,143, 0.18);
+  color: #1F2F3B;
+}
+
+/* Focus */
+input:focus, textarea:focus, select:focus { outline: none; }
+
+/* Gallery marquee */
+@keyframes gallery-scroll {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-50%, 0, 0); }
+}
+
+.gallery-track {
+  animation: gallery-scroll 60s linear infinite;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* GPU-promote fixed navbar so backdrop-blur doesn't repaint on scroll */
+nav[class*="fixed"] {
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+.gallery-wrapper:hover .gallery-track {
+  animation-play-state: paused;
+}
+
+/* Tap highlight */
+a, button { -webkit-tap-highlight-color: transparent; }
+
+img { display: block; max-width: 100%; }
+
+/* Autofill: keep the RSVP form's own colours instead of the browser's pale
+   yellow or blue, which is unreadable on the dark version of the form. */
+[data-rsvp] input:-webkit-autofill,
+[data-rsvp] input:-webkit-autofill:focus {
+  -webkit-text-fill-color: currentColor;
+  transition: background-color 600000s 0s, color 600000s 0s;
+}
