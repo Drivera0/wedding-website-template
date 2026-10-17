@@ -10,6 +10,10 @@ A password-protected wedding website with personal invitations, RSVPs and an adm
 - **Admin dashboard** (`/admin`): guest list with spreadsheet (xlsx) import, invitation sending over WhatsApp or email, reminders, catering and music summaries, and table numbers
 - **Security**: guest tables aren't exposed to the public API. Every read and write goes through Postgres functions that check the invitation code or the admin key (see [scripts/SECURITY.md](scripts/SECURITY.md))
 
+## Architecture
+
+![Wedding website architecture: guests and admin use a React app on Vercel that reaches the guest tables only through Postgres functions in Supabase](docs/architecture.png)
+
 ## Stack
 
 Vite, React 18, TypeScript, Tailwind CSS, Framer Motion, GSAP, Lenis, React Router, and Supabase (Postgres and RPC functions over REST, no SDK). Deployed on Vercel.
